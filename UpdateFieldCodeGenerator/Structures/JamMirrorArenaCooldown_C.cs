@@ -3,7 +3,9 @@
     [HasChangesMask]
     public class JamMirrorArenaCooldown_C
     {
+        //440
         public static readonly UpdateField m_spellID = new UpdateField(typeof(int), UpdateFieldFlag.None);
+        public static readonly UpdateField m_itemID = new UpdateField(typeof(int), UpdateFieldFlag.None);
         public static readonly UpdateField m_charges = new UpdateField(typeof(int), UpdateFieldFlag.None);
         public static readonly UpdateField m_flags = new UpdateField(typeof(uint), UpdateFieldFlag.None);
         public static readonly UpdateField m_startTime = new UpdateField(typeof(uint), UpdateFieldFlag.None);

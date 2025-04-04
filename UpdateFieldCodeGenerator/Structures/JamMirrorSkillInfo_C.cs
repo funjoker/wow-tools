@@ -3,6 +3,7 @@
     [HasChangesMask]
     public class JamMirrorSkillInfo_C
     {
+        //440
         public static readonly UpdateField m_skillLineID = new UpdateField(typeof(ushort[]), UpdateFieldFlag.None, 256);
         public static readonly UpdateField m_skillStep = new UpdateField(typeof(ushort[]), UpdateFieldFlag.None, 256);
         public static readonly UpdateField m_skillRank = new UpdateField(typeof(ushort[]), UpdateFieldFlag.None, 256);

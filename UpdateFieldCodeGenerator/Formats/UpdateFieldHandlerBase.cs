@@ -177,12 +177,8 @@ namespace UpdateFieldCodeGenerator.Formats
                 if (_create)
                 {
                     moveFieldToEnd("declinedNames");
-                    moveFieldBeforeField("name{0}size()", false, "hasQuestSession", false);
-                    moveFieldBeforeField("declinedNames.has_value()", false, "declinedNames", false);
                     moveFieldBeforeField("dungeonScore", false, "declinedNames", false);
                     moveFieldBeforeField("name", false, "declinedNames", false);
-                    moveFieldBeforeField("visibleEquipableSpells", false, "declinedNames", false);
-                    moveFieldBeforeField("petNames", false, "declinedNames", false);
                 }
                 else
                 {
@@ -194,7 +190,6 @@ namespace UpdateFieldCodeGenerator.Formats
                     moveFieldBeforeField("dungeonScore", false, "partyType", false);
                     moveFieldBeforeField("name", false, "partyType", false);
                     moveFieldBeforeField("declinedNames", false, "partyType", false);
-                    moveFieldToEnd("visibleEquipableSpells");
                 }
             }
             else if (_structureType == typeof(JamMirrorDeclinedNames_C))
@@ -215,25 +210,16 @@ namespace UpdateFieldCodeGenerator.Formats
 
                 if (_create)
                 {
-                    moveFieldToEnd("delveData");
-                    moveFieldBeforeField("walkInData", false, "delveData", false);
-                    moveFieldBeforeField("accountBankTabSettings", false, "walkInData", false);
+                    moveFieldBeforeField("petStable.has_value()", false, "sortBagsRightToLeft", false);
+                    moveFieldBeforeField("accountBankTabSettings", true, "sortBagsRightToLeft", false);
+                    moveFieldBeforeField("researchHistory", false, "sortBagsRightToLeft", false);
+                    moveFieldBeforeField("frozenPerksVendorItem", false, "sortBagsRightToLeft", false);
+                    moveFieldBeforeField("sortBagsRightToLeft", false, "petStable.has_value()", false);
+                    moveFieldBeforeField("insertItemsLeftToRight", false, "petStable.has_value()", false);
                     moveFieldBeforeField("petStable", false, "accountBankTabSettings", false);
-
-                    moveFieldBeforeField("dungeonScore", false, "pvpInfo", false);
-                    moveFieldBeforeField("characterDataElements", false, "pvpInfo", false);
-                    moveFieldBeforeField("accountDataElements", false, "pvpInfo", false);
                 }
                 else
                 {
-                    moveFieldBeforeField("accountBankTabSettings", true, "characterDataElements", false);
-                    moveFieldBeforeField("accountBankTabSettings", false, "farsightObject", false);
-
-                    moveFieldBeforeField("delveData", false, "invSlots", false);
-                    moveFieldBeforeField("walkInData", false, "delveData", false);
-                    moveFieldBeforeField("petStable", false, "walkInData", false);
-                    moveFieldBeforeField("dungeonScore", false, "petStable", false);
-
                     FinishControlBlocks(null, string.Empty);
                     FinishBitPack("FinishBitPack_afterResearch");
 
@@ -242,34 +228,82 @@ namespace UpdateFieldCodeGenerator.Formats
 
                     var researchIndex = _fieldWrites.FindIndex(fieldWrite => fieldWrite.Name == RenameField("research") && !fieldWrite.IsSize);
                     _fieldWrites.InsertRange(researchIndex + 1, finishBitPack);
+
+                    moveFieldBeforeField("accountBankTabSettings", true, "characterDataElements", false);
+                    moveFieldBeforeField("researchHistory", false, "petStable", false);
+                    moveFieldBeforeField("frozenPerksVendorItem", false, "petStable", false);
+                    moveFieldBeforeField("numStableSlots", false, "petStable.has_value()", false);
+
+                    moveFieldToEnd("pvpInfo");
+
+                    //FinishControlBlocks(null, string.Empty);
+                    //FinishBitPack("FinishBitPack_afterOptionalBit");
+                    //var finishBitPackAfterOptionalBit = _fieldWrites.GetRange(_fieldWrites.Count - 2, 2);
+                    //_fieldWrites.RemoveRange(_fieldWrites.Count - 2, 2);
+                    //
+                    //var researchHistoryIndex = _fieldWrites.FindIndex(fieldWrite => fieldWrite.Name == RenameField("researchHistory") && !fieldWrite.IsSize);
+                    //_fieldWrites.InsertRange(researchHistoryIndex, finishBitPackAfterOptionalBit);
+                    //
+                    //moveFieldBeforeField("petStable.has_value()", false, "researchHistory", false);
                 }
 
-                moveFieldBeforeField("field_1410", false, "dungeonScore", false);
-                moveFieldBeforeField("frozenPerksVendorItem", false, "field_1410", false);
-                moveFieldBeforeField("questSession", false, "frozenPerksVendorItem", false);
-                moveFieldBeforeField("researchHistory", false, "questSession", false);
-                moveFieldBeforeField("delveData.has_value()", false, "researchHistory", false);
-                moveFieldBeforeField("walkInData.has_value()", false, "delveData.has_value()", false);
-
-                if (_create)
-                {
-                    moveFieldBeforeField("accountBankTabSettings", true, "walkInData.has_value()", false);
-                    moveFieldBeforeField("petStable.has_value()", false, "accountBankTabSettings", true);
-                }
-                else
-                {
-                    moveFieldBeforeField("petStable.has_value()", false, "walkInData.has_value()", false);
-                }
-
-                moveFieldBeforeField("questSession.has_value()", false, "petStable.has_value()", false);
-
-                FinishControlBlocks(null, string.Empty);
-                FinishBitPack("FinishBitPack_afterOptionalBit");
-                var finishBitPackAfterOptionalBit = _fieldWrites.GetRange(_fieldWrites.Count - 2, 2);
-                _fieldWrites.RemoveRange(_fieldWrites.Count - 2, 2);
-
-                var researchHistoryIndex = _fieldWrites.FindIndex(fieldWrite => fieldWrite.Name == RenameField("researchHistory") && !fieldWrite.IsSize);
-                _fieldWrites.InsertRange(researchHistoryIndex, finishBitPackAfterOptionalBit);
+                //    if (_create)
+                //    {
+                //        moveFieldToEnd("delveData");
+                //        moveFieldBeforeField("walkInData", false, "delveData", false);
+                //        moveFieldBeforeField("accountBankTabSettings", false, "walkInData", false);
+                //        moveFieldBeforeField("petStable", false, "accountBankTabSettings", false);
+                //
+                //        moveFieldBeforeField("dungeonScore", false, "pvpInfo", false);
+                //        moveFieldBeforeField("characterDataElements", false, "pvpInfo", false);
+                //        moveFieldBeforeField("accountDataElements", false, "pvpInfo", false);
+                //    }
+                //    else
+                //    {
+                //        moveFieldBeforeField("accountBankTabSettings", true, "characterDataElements", false);
+                //        moveFieldBeforeField("accountBankTabSettings", false, "farsightObject", false);
+                //
+                //        moveFieldBeforeField("delveData", false, "invSlots", false);
+                //        moveFieldBeforeField("walkInData", false, "delveData", false);
+                //        moveFieldBeforeField("petStable", false, "walkInData", false);
+                //        moveFieldBeforeField("dungeonScore", false, "petStable", false);
+                //
+                //        FinishControlBlocks(null, string.Empty);
+                //        FinishBitPack("FinishBitPack_afterResearch");
+                //
+                //        var finishBitPack = _fieldWrites.GetRange(_fieldWrites.Count - 2, 2);
+                //        _fieldWrites.RemoveRange(_fieldWrites.Count - 2, 2);
+                //
+                //        var researchIndex = _fieldWrites.FindIndex(fieldWrite => fieldWrite.Name == RenameField("research") && !fieldWrite.IsSize);
+                //        _fieldWrites.InsertRange(researchIndex + 1, finishBitPack);
+                //    }
+                //
+                //    moveFieldBeforeField("field_1410", false, "dungeonScore", false);
+                //    moveFieldBeforeField("frozenPerksVendorItem", false, "field_1410", false);
+                //    moveFieldBeforeField("questSession", false, "frozenPerksVendorItem", false);
+                //    moveFieldBeforeField("researchHistory", false, "questSession", false);
+                //    moveFieldBeforeField("delveData.has_value()", false, "researchHistory", false);
+                //    moveFieldBeforeField("walkInData.has_value()", false, "delveData.has_value()", false);
+                //
+                //    if (_create)
+                //    {
+                //        moveFieldBeforeField("accountBankTabSettings", true, "walkInData.has_value()", false);
+                //        moveFieldBeforeField("petStable.has_value()", false, "accountBankTabSettings", true);
+                //    }
+                //    else
+                //    {
+                //        moveFieldBeforeField("petStable.has_value()", false, "walkInData.has_value()", false);
+                //    }
+                //
+                //    moveFieldBeforeField("questSession.has_value()", false, "petStable.has_value()", false);
+                //
+                //    FinishControlBlocks(null, string.Empty);
+                //    FinishBitPack("FinishBitPack_afterOptionalBit");
+                //    var finishBitPackAfterOptionalBit = _fieldWrites.GetRange(_fieldWrites.Count - 2, 2);
+                //    _fieldWrites.RemoveRange(_fieldWrites.Count - 2, 2);
+                //
+                //    var researchHistoryIndex = _fieldWrites.FindIndex(fieldWrite => fieldWrite.Name == RenameField("researchHistory") && !fieldWrite.IsSize);
+                //    _fieldWrites.InsertRange(researchHistoryIndex, finishBitPackAfterOptionalBit);
             }
             else if (_structureType == typeof(JamMirrorPlayerDataElement_C))
             {
@@ -282,7 +316,6 @@ namespace UpdateFieldCodeGenerator.Formats
                 moveFieldBeforeField("m_name{0}size()", false, "m_name", false);
                 if (_create)
                     moveFieldBeforeField("m_subTrees", false, "m_name", false);
-
             }
             else if (_structureType == typeof(JamMirrorTraitSubTreeCache_C))
             {
@@ -290,85 +323,28 @@ namespace UpdateFieldCodeGenerator.Formats
                     moveFieldBeforeField("m_traitSubTreeID", false, "m_entries{0}size()", false);
 
             }
-            else if (_structureType == typeof(JamMirrorCraftingOrder_C))
-            {
-                if (_create)
-                {
-                    moveFieldBeforeField("m_data", false, "m_recraftItemInfo", false);
-                    moveFieldBeforeField("m_recraftItemInfo", false, "m_enchantments", false);
-                    moveFieldBeforeField("m_recraftItemInfo.has_value()", false, "m_enchantments", true);
-                }
-
-                FinishBitPack("FinishBitPack_afterOptionalBit");
-                moveFieldBeforeField("FinishBitPack_afterOptionalBit", false, "m_recraftItemInfo", false);
-            }
-            else if (_structureType == typeof(JamMirrorCraftingOrderData_C))
-            {
-                if (_create)
-                {
-                    moveFieldToEnd("m_reagents");
-                    moveFieldToEnd("m_customerNotes");
-                    moveFieldToEnd("m_customer");
-                    moveFieldToEnd("m_npcCustomer");
-                    moveFieldToEnd("m_outputItem");
-                    moveFieldToEnd("m_outputItemData");
-
-                    FinishBitPack("FinishBitPack_afterOptionalBit");
-                    moveFieldBeforeField("FinishBitPack_afterOptionalBit", false, "m_reagents", false);
-                }
-            }
-            else if (_structureType == typeof(JamMirrorCraftingOrderItem_C))
-            {
-                if (_create)
-                    moveFieldBeforeField("m_dataSlotIndex.has_value()", false, "m_dataSlotIndex", false);
-
-                FinishBitPack("FinishBitPack_afterOptionalBit");
-                moveFieldBeforeField("FinishBitPack_afterOptionalBit", false, "m_dataSlotIndex", false);
-            }
             else if (_structureType == typeof(JamMirrorStablePetInfo_C))
             {
                 if (!_create)
                 {
-                    moveFieldBeforeField("m_petFlags", false, "m_name{0}size()", false);
-                    moveFieldBeforeField("m_specialization", false, "m_name{0}size()", false);
+                    moveFieldToEnd("m_name");
+                    moveFieldBeforeField("m_name{0}size()", false, "m_name", false);
                 }
             }
             else if (_structureType == typeof(JamMirrorBankTabSettings_C))
             {
                 moveFieldBeforeField("m_depositFlags", false, "m_name", false);
             }
-            else if(_structureType == typeof(JamMirrorWalkInData_C))
+            else if (_structureType == typeof(JamMirrorConversationActor_C))
             {
-                if (!_create)
-                    moveFieldBeforeField("Field_18", false, "m_type", false);
-            }
-            else if(_structureType == typeof(JamMirrorDelveData_C))
-            {
-                if (!_create)
-                {
-                    moveFieldBeforeField("m_owners{0}size()", false, "m_started", false);
-                    moveFieldBeforeField("m_owners", false, "m_started", false);
-                }
+                if (_create)
+                    moveFieldBeforeField("m_type", false, "m_id", false);
             }
             else if (_structureType == typeof(CGAreaTriggerData))
             {
                 if (_create)
                 {
-                    var overrideScaleCurveIndex = _fieldWrites.FindIndex(fieldWrite =>
-                    {
-                        return fieldWrite.Name == RenameField("m_overrideScaleCurve") && !fieldWrite.IsSize;
-                    });
-                    if (overrideScaleCurveIndex != -1)
-                    {
-                        // move to start
-                        var overrideScaleCurve = _fieldWrites[overrideScaleCurveIndex];
-                        _fieldWrites.RemoveAt(overrideScaleCurveIndex);
-                        _fieldWrites.Insert(0, overrideScaleCurve);
-                    }
-
-                    moveFieldBeforeField("FinishBitPack", false, "m_overrideMoveCurveX", false);
-                    moveFieldBeforeField("m_heightIgnoresScale", false, "m_overrideMoveCurveX", false);
-                    moveFieldBeforeField("m_field_261", false, "m_overrideMoveCurveX", false);
+                    moveFieldBeforeField("m_overrideScaleCurve", false, "m_caster", false);
                 }
                 else
                 {
@@ -378,21 +354,21 @@ namespace UpdateFieldCodeGenerator.Formats
                     moveFieldBeforeField("m_overrideMoveCurveZ", false, "m_visualAnim", false);
                 }
             }
-            else if (_structureType == typeof(CGConversationData))
-            {
-                if (_create)
-                {
-                    var dontPlayBroadcastTextSoundsIndex = _fieldWrites.FindIndex(fw => fw.Name == RenameField("m_dontPlayBroadcastTextSounds"));
-                    var actorsSizeIndex = _fieldWrites.FindIndex(fw => fw.Name == RenameField("m_actors") && fw.IsSize);
-                    if (actorsSizeIndex != -1)
-                    {
-                        // move to just-before-end (end is a write for closing all brackets)
-                        var dontPlayBroadcastTextSounds = _fieldWrites[dontPlayBroadcastTextSoundsIndex];
-                        _fieldWrites.RemoveAt(dontPlayBroadcastTextSoundsIndex);
-                        _fieldWrites.Insert(actorsSizeIndex, dontPlayBroadcastTextSounds);
-                    }
-                }
-            }
+            //else if (_structureType == typeof(CGConversationData))
+            //{
+            //    if (_create)
+            //    {
+            //        var dontPlayBroadcastTextSoundsIndex = _fieldWrites.FindIndex(fw => fw.Name == RenameField("m_dontPlayBroadcastTextSounds"));
+            //        var actorsSizeIndex = _fieldWrites.FindIndex(fw => fw.Name == RenameField("m_actors") && fw.IsSize);
+            //        if (actorsSizeIndex != -1)
+            //        {
+            //            // move to just-before-end (end is a write for closing all brackets)
+            //            var dontPlayBroadcastTextSounds = _fieldWrites[dontPlayBroadcastTextSoundsIndex];
+            //            _fieldWrites.RemoveAt(dontPlayBroadcastTextSoundsIndex);
+            //            _fieldWrites.Insert(actorsSizeIndex, dontPlayBroadcastTextSounds);
+            //        }
+            //    }
+            //}
         }
 
         protected void RegisterDynamicChangesMaskFieldType(Type fieldType)

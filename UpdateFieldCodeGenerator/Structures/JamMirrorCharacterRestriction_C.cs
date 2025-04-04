@@ -2,6 +2,7 @@
 {
     public class JamMirrorCharacterRestriction_C
     {
+        //440
         public static readonly UpdateField field_0 = new UpdateField(typeof(int), UpdateFieldFlag.None);
         public static readonly UpdateField field_4 = new UpdateField(typeof(int), UpdateFieldFlag.None);
         public static readonly UpdateField field_8 = new UpdateField(typeof(int), UpdateFieldFlag.None);

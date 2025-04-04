@@ -4,6 +4,7 @@
     [HasMutableInterface]
     public class CGObjectData
     {
+        //440
         public static readonly ObjectType ObjectType = ObjectType.Object;
 
         public static readonly UpdateField m_entryID = new UpdateField(typeof(int), UpdateFieldFlag.None, customFlag: CustomUpdateFieldFlag.ViewerDependent);

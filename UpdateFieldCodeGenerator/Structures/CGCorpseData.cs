@@ -1,6 +1,6 @@
 ﻿namespace UpdateFieldCodeGenerator.Structures
 {
-    [HasChangesMask]
+    [HasChangesMask(forceMaskMask: true)]
     public class CGCorpseData
     {
         public static readonly ObjectType ObjectType = ObjectType.Corpse;
@@ -17,6 +17,5 @@
         public static readonly UpdateField m_customizations = new UpdateField(typeof(DynamicUpdateField<JamMirrorChrCustomizationChoice_C>), UpdateFieldFlag.None);
         public static readonly UpdateField m_flags = new UpdateField(typeof(uint), UpdateFieldFlag.None);
         public static readonly UpdateField m_factionTemplate = new UpdateField(typeof(int), UpdateFieldFlag.None);
-        public static readonly UpdateField m_stateSpellVisualKitID = new UpdateField(typeof(uint), UpdateFieldFlag.None);
     }
 }
