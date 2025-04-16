@@ -69,7 +69,7 @@ namespace UpdateFieldCodeGenerator.Structures
         public static readonly UpdateField lifetimeMaxRank = new UpdateField(typeof(byte), UpdateFieldFlag.None);
         public static readonly UpdateField numRespecs = new UpdateField(typeof(byte), UpdateFieldFlag.None);
         public static readonly UpdateField ammoID = new UpdateField(typeof(int), UpdateFieldFlag.None);
-        public static readonly UpdateField pvpMedals = new UpdateField(typeof(uint), UpdateFieldFlag.None);
+        public static readonly UpdateField pvpMedals = new UpdateField(typeof(byte), UpdateFieldFlag.None);
         public static readonly UpdateField buybackPrice = new UpdateField(typeof(uint[]), UpdateFieldFlag.None, 12);
         public static readonly UpdateField buybackTimestamp = new UpdateField(typeof(long[]), UpdateFieldFlag.None, 12);
         public static readonly UpdateField todayHonorableKills = new UpdateField(typeof(ushort), UpdateFieldFlag.None);
@@ -130,6 +130,7 @@ namespace UpdateFieldCodeGenerator.Structures
         public static readonly UpdateField transmog = new UpdateField(typeof(DynamicUpdateField<uint>), UpdateFieldFlag.None);
         public static readonly UpdateField conditionalTransmog = new UpdateField(typeof(DynamicUpdateField<int>), UpdateFieldFlag.None);
         public static readonly UpdateField selfResSpells = new UpdateField(typeof(DynamicUpdateField<int>), UpdateFieldFlag.None);
+        public static readonly UpdateField warbandScenes = new UpdateField(typeof(DynamicUpdateField<uint>), UpdateFieldFlag.None);
         public static readonly UpdateField characterRestrictions = new UpdateField(typeof(DynamicUpdateField<JamMirrorCharacterRestriction_C>), UpdateFieldFlag.None);
         public static readonly UpdateField spellPctModByLabel = new UpdateField(typeof(DynamicUpdateField<JamMirrorSpellPctModByLabel_C>), UpdateFieldFlag.None);
         public static readonly UpdateField spellFlatModByLabel = new UpdateField(typeof(DynamicUpdateField<JamMirrorSpellFlatModByLabel_C>), UpdateFieldFlag.None);
@@ -140,8 +141,8 @@ namespace UpdateFieldCodeGenerator.Structures
         public static readonly UpdateField transportServerTime = new UpdateField(typeof(int), UpdateFieldFlag.None);
         public static readonly UpdateField traitConfigs = new UpdateField(typeof(DynamicUpdateField<JamMirrorTraitConfig_C>), UpdateFieldFlag.None);
         public static readonly UpdateField activeCombatTraitConfigID = new UpdateField(typeof(uint), UpdateFieldFlag.None);
-        public static readonly UpdateField glyphSlots = new UpdateField(typeof(uint[]), UpdateFieldFlag.None, 9);
-        public static readonly UpdateField glyphs = new UpdateField(typeof(uint[]), UpdateFieldFlag.None, 9);
+        public static readonly UpdateField glyphSlots = new UpdateField(typeof(uint[]), UpdateFieldFlag.None, 6);
+        public static readonly UpdateField glyphs = new UpdateField(typeof(uint[]), UpdateFieldFlag.None, 6);
         public static readonly UpdateField glyphsEnabled = new UpdateField(typeof(ushort), UpdateFieldFlag.None);
         public static readonly UpdateField lfgRoles = new UpdateField(typeof(byte), UpdateFieldFlag.None);
         public static readonly UpdateField categoryCooldownMods = new UpdateField(typeof(DynamicUpdateField<JamMirrorCategoryCooldownMod_C>), UpdateFieldFlag.None);
